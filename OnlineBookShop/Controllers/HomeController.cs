@@ -14,16 +14,10 @@ namespace OnlineBookShop.Controllers
             _productRepository = new ProductRepository();
         }
 
-        public string Index()
+        public IActionResult Index()
         {
             var products = _productRepository.GetProducts();
-            var result = string.Empty;
-
-            foreach (var product in products)
-            {
-                result += product + "\n\n";
-            }
-            return result;
+            return View(products);
         }
 
         public IActionResult Privacy()

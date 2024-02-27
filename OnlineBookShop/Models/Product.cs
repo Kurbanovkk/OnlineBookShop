@@ -10,7 +10,7 @@
 
         public Product(string name, string description, decimal cost)
         {
-            Id = _instanceCounter++;
+            Id = ++_instanceCounter;
             Name = name;
             Description = description;
             Cost = cost;
