@@ -11,11 +11,11 @@ namespace OnlineBookShop.Controllers
         {
             _productRepository = new ProductRepository();
         }
-        public string Index(int id)
+        public IActionResult Index(int id)
         {
             var product = _productRepository.TryGetById(id);
-            if (product == null) return $"Продукта с {id} - не существует";
-            else return $"{product}\n{product.Description}";
+            
+            return View(product);
         }
     }
 }

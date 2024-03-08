@@ -1,0 +1,21 @@
+﻿@model Product
+
+<h1>Корзина</h1>
+<div class="row">
+        <div class="col-5">
+            <img width="250" height="600" class="card-img-top" src="@Model.Link" alt="Изображение товара">
+            </div>
+
+            <div class="col-3">
+            <div class="card-body">
+                 <h5>@Model.Name</h5>
+                <h5>@Model.Cost руб.</h5>
+                <h5>@Model.Description</h5>
+
+                <a class="btn btn-dark" href="/Home/Index" role="button">Продолжить покупки</a>
+            <a class="btn btn-dark" href="#" role="button">Добавить в корзину</a>
+
+            </div>
+
+        </div>
+</div>
