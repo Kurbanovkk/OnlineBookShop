@@ -1,6 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using OnlineBookShop.Data;
-using OnlineBookShop.Models;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 
@@ -8,10 +6,10 @@ namespace OnlineBookShop.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ProductRepository _productRepository;
+        private readonly ProductsRepository _productRepository;
         public HomeController()
         {
-            _productRepository = new ProductRepository();
+            _productRepository = new ProductsRepository();
         }
 
         public IActionResult Index()
