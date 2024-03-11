@@ -22,5 +22,12 @@ namespace OnlineBookShop.Controllers
             CartsRepository.Add(product, Constants.UserId);
             return RedirectToAction("Index");
         }
+
+        public IActionResult Delete(int productId)
+        {
+            var product = _productRepository.TryGetById(productId);
+            CartsRepository.Delete(productId, Constants.UserId);
+            return RedirectToAction("Index");
+        }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace OnlineBookShop
 {
-    public class CartsRepository
+    public static class CartsRepository
     {
         private static List<Cart> carts = new List<Cart>();
 
@@ -11,7 +11,7 @@ namespace OnlineBookShop
             return carts.FirstOrDefault(x => x.UserId == userId);
         }
 
-        internal static void Add(Product product, string userId)
+        public static void Add(Product product, string userId)
         {
             var existingCart = TryGetByUserId(userId);
 
@@ -52,5 +52,29 @@ namespace OnlineBookShop
                 }
             }
         }
+
+        public static void Delete(int productId, string userId)
+        {
+            var existingCart = TryGetByUserId(userId);
+
+            if (existingCart != null)
+            {
+                var existingCartItem = existingCart.CartItems.FirstOrDefault(x => x.Product.Id == productId);
+
+                if (existingCartItem != null)
+                {
+                    if (existingCartItem.Amount > 1)
+                    {
+                        existingCartItem.Amount -= 1;
+                    }
+                    else
+                    {
+                        existingCart.CartItems.Remove(existingCartItem);
+                    }
+                }
+            }
+            else Console.WriteLine("Корзина пуста");
+        }
     }
+    
 }

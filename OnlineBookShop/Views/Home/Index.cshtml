@@ -14,8 +14,21 @@
                     <h5>@product.Name</h5>
                 </a>
                 <h5>@product.Cost руб.</h5>
-                <a class="btn btn-dark" href="/cart/add?produstId=@product.Id" role="button">Добавить в корзину</a>
-                
+                <a class="btn btn-dark" href="/cart/add?productId=@product.Id" role="button" onclick="event.preventDefault(); addToCart(@product.Id)">Добавить в корзину</a>
+                <script>
+                    function addToCart(productId) {
+                        fetch(`/cart/add?productId=${productId}`, {
+                            method: 'POST',
+                        })
+                            .then(response => response.json())
+                            .then(data => {
+                                console.log(data);
+                            })
+                            .catch(error => {
+                                console.error('Error:', error);
+                            });
+                    }
+                </script>
             </div>
             
     </div>
