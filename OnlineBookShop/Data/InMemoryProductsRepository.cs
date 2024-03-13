@@ -1,10 +1,9 @@
 ﻿
-
 namespace OnlineBookShop
 {
-    public class ProductsRepository
+    public class InMemoryProductsRepository : IProductsRepository
     {
-        private static List<Product> products = new List<Product>()
+        private List<Product> products = new List<Product>()
             {
                 new Product("Преступление и наказание",
                     "Преступление и наказание» — самый известный роман Фёдора Михайловича Достоевского.",

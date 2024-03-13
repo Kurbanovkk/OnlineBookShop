@@ -1,21 +1,19 @@
 ﻿
-
 namespace OnlineBookShop
 {
-    public static class CartsRepository
+    public class InMemoryCartsRepository : ICartsRepository
     {
-        private static List<Cart> carts = new List<Cart>();
-
-        public static Cart TryGetByUserId(string userId)
+        private List<Cart> _carts = new List<Cart>();
+        public Cart TryGetByUserId(string userId)
         {
-            return carts.FirstOrDefault(x => x.UserId == userId);
+            return _carts.FirstOrDefault(x => x.UserId == userId);
         }
 
-        public static void Add(Product product, string userId)
+        public void Add(Product product, string userId)
         {
             var existingCart = TryGetByUserId(userId);
 
-            if (existingCart == null) 
+            if (existingCart == null)
             {
                 var newCart = new Cart
                 {
@@ -31,7 +29,7 @@ namespace OnlineBookShop
                         }
                     }
                 };
-                carts.Add(newCart);
+                _carts.Add(newCart);
             }
             else
             {
@@ -41,7 +39,7 @@ namespace OnlineBookShop
                 {
                     existingCartItem.Amount += 1;
                 }
-                else 
+                else
                 {
                     existingCart.CartItems.Add(new CartItem
                     {
@@ -53,28 +51,27 @@ namespace OnlineBookShop
             }
         }
 
-        public static void Delete(int productId, string userId)
+        public void Delete(int productId, string userId)
         {
             var existingCart = TryGetByUserId(userId);
-
-            if (existingCart != null)
             {
                 var existingCartItem = existingCart.CartItems.FirstOrDefault(x => x.Product.Id == productId);
-
-                if (existingCartItem != null)
+                existingCartItem.Amount--;
+                if (existingCartItem.Amount == 0)
                 {
-                    if (existingCartItem.Amount > 1)
-                    {
-                        existingCartItem.Amount -= 1;
-                    }
-                    else
-                    {
-                        existingCart.CartItems.Remove(existingCartItem);
-                    }
+                    existingCart.CartItems.Remove(existingCartItem);
+                }
+                if (existingCart.CartItems.Count == 0) 
+                {
+                    _carts.Clear();
                 }
             }
-            else Console.WriteLine("Корзина пуста");
+        }
+
+        public void Clear(string userId)
+        {
+            var existingCart = TryGetByUserId(userId);
+            _carts.Clear();
         }
     }
-    
 }

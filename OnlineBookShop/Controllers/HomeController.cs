@@ -6,10 +6,10 @@ namespace OnlineBookShop.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ProductsRepository _productRepository;
-        public HomeController()
+        private readonly IProductsRepository _productRepository;
+        public HomeController(IProductsRepository productRepository)
         {
-            _productRepository = new ProductsRepository();
+            _productRepository = productRepository;
         }
 
         public IActionResult Index()

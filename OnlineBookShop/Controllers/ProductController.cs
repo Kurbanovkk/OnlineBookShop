@@ -1,14 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-
 namespace OnlineBookShop.Controllers
 {
     public class ProductController : Controller
     {
 
-        private readonly ProductsRepository _productRepository;
-        public ProductController()
+        private readonly IProductsRepository _productRepository;
+        public ProductController(IProductsRepository productRepository)
         {
-            _productRepository = new ProductsRepository();
+            _productRepository = productRepository;
         }
         public IActionResult Index(int id)
         {
