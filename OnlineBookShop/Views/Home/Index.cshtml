@@ -13,8 +13,8 @@
                 <a style="color:navy" href="/product/index/@product.Id">
                     <h5>@product.Name</h5>
                 </a>
-                <h5>@product.Cost руб.</h5>
-                <a class="btn btn-dark" href="/cart/add?productId=@product.Id" role="button" onclick="event.preventDefault(); addToCart(@product.Id)">Добавить в корзину</a>
+                <h5>@string.Format("{0:### ### ###}",product.Cost) руб.</h5>
+                <a class="btn btn-dark bi bi-cart-plus" href="/cart/add?productId=@product.Id" role="button" onclick="event.preventDefault(); addToCart(@product.Id)"> Добавить в корзину</a>
                 <script>
                     function addToCart(productId) {
                         fetch(`/cart/add?productId=${productId}`, {

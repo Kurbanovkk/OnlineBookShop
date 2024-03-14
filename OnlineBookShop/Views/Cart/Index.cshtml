@@ -3,7 +3,7 @@
 @if (Model == null)
 {
     <h3>Корзина пуста </h3>
-    <a class="btn btn-primary" href="/Home/Index" role="button">Пиступить к покупкам </a>
+    <a class="btn btn-primary bi bi-arrow-left" href="/Home/Index" role="button">Пиступить к покупкам </a>
 }
 else
 {
@@ -24,13 +24,13 @@ else
                     {
                         <tr>
                             <td>@item.Product.Name</td>
-                            <td>@item.Product.Cost руб</td>
+                            <td>@string.Format("{0:### ### ###}",item.Product.Cost) руб</td>
                             <td>
                                 @item.Amount
                                 <a class="btn btn-outline-secondary btn-sm" href="/cart/delete?productId=@item.Product.Id">-</a>
                                 <a class="btn btn-outline-secondary btn-sm" href="/cart/add?productId=@item.Product.Id">+</a>
                             </td>
-                            <td>@item.Cost руб</td>
+                            <td>@string.Format("{0:### ### ###}",item.Cost) руб</td>
                         </tr>
                     }
                 </tbody>
@@ -40,11 +40,11 @@ else
                 <h4>@Model.Cost руб</h4>
             </div>
             <div align="center">
-                <a class="btn btn-danger" href="/cart/clear" role="button">Очистить корзину</a>
+                <a class="btn btn-danger bi bi-cart-x" href="/cart/clear" role="button"> >Очистить корзину</a>
             </div>
             <div align="center">
-                <a class="btn btn-primary" href="/Home/Index" role="button">Продолжить покупки</a>
-                <a class="btn btn-success" href="#" role="button">Оформить заказ</a>
+                <a class="btn btn-primary bi bi-arrow-left" href="/Home/Index" role="button"> Продолжить покупки</a>
+                <a class="btn btn-success bi bi-arrow-right" href="/order/index" role="button"> Перейти к оформлению</a>
             </div>
         </div>
     </div>
