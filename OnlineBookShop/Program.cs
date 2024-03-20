@@ -1,10 +1,13 @@
 using OnlineBookShop;
+using OnlineBookShop.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddSingleton<IProductsRepository, InMemoryProductsRepository>();
 builder.Services.AddSingleton<ICartsRepository, InMemoryCartsRepository>();
+builder.Services.AddSingleton<IOrdersRepository, InMemoryOrdersRepository>();
+builder.Services.AddSingleton<IFavouritesRepository, InMemoryFavouritesRepository>();
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();

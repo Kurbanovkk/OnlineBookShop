@@ -6,4 +6,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Include="Views\Favourites\Index.cshtml" />
+  </ItemGroup>
+
 </Project>

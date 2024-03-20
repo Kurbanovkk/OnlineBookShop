@@ -14,6 +14,7 @@
                     <h5>@product.Name</h5>
                 </a>
                 <h5>@string.Format("{0:### ### ###}",product.Cost) руб.</h5>
+                <a class="btn btn-Info bi bi-bookmark-heart-fill" href="/favourites/add?productId=@product.Id" role="button"> Добавить в избранное</a>
                 <a class="btn btn-dark bi bi-cart-plus" href="/cart/add?productId=@product.Id" role="button" onclick="event.preventDefault(); addToCart(@product.Id)"> Добавить в корзину</a>
                 <script>
                     function addToCart(productId) {
@@ -29,6 +30,8 @@
                             });
                     }
                 </script>
+                
+                
             </div>
             
     </div>

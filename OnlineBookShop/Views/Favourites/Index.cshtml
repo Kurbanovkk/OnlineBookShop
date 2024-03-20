@@ -1,0 +1,57 @@
+﻿@model Favourites
+
+@if (Model == null)
+{
+    <h3>В избранном еще нет товаров </h3>
+    <a class="btn btn-primary bi bi-arrow-left" href="/Home/Index" role="button">Пиступить к покупкам </a>
+}
+else
+{
+    <div class="row">
+        <div class="col">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Название</th>
+                        <th>Цена</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <body>
+                    @foreach (var item in Model.FavouritesItems)
+                    {
+                        <tr>
+                            <td style="color:navy" href="/product/index/@item.Id">@item.Product.Name</td>
+                            <td>
+                                @string.Format("{0:### ### ###}", item.Product.Cost) руб
+                            </td>
+                            <td>
+                                <a class="btn btn-danger bi bi-cart-plus" href="/Favourites/delete?productId=@item.Product.Id">Удалить</a>
+                                <a class="btn btn-success bi bi-cart-plus" href="/cart/add?productId=@item.Product.Id" role="button" onclick="event.preventDefault(); addToCart(@item.Product.Id)"> Добавить в корзину</a>
+                                <script>
+                                function addToCart(productId) {
+                                    fetch(`/cart/add?productId=${productId}`, {
+                                            method: 'POST',
+                                        })
+                                            .then(response => response.json())
+                                            .then(data => {
+                                                console.log(data);
+                                            })
+                                            .catch(error => {
+                                                console.error('Error:', error);
+                                            });
+                                    }
+                                </script>
+                            </td>
+                        </tr>
+                    }
+                </body>
+            </table>
+            <div align="center">
+                <a class="btn btn-primary bi bi-arrow-left" href="/Home/Index" role="button"> Продолжить покупки</a>
+                <a class="btn btn-success bi bi-arrow-right" href="/Favourites/Clear" role="button"> Очистить избранное</a>
+            </div>
+        </div>
+    </div>
+}

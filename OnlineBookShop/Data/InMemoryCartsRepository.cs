@@ -33,11 +33,11 @@ namespace OnlineBookShop
             }
             else
             {
-                var existingCartItem = existingCart.CartItems.FirstOrDefault(x => x.Product.Id == product.Id);
+                var existingCartItem = existingCart?.CartItems?.FirstOrDefault(x => x.Product.Id == product.Id);
 
                 if (existingCartItem != null)
                 {
-                    existingCartItem.Amount += 1;
+                    existingCartItem.Amount++;
                 }
                 else
                 {
@@ -61,16 +61,15 @@ namespace OnlineBookShop
                 {
                     existingCart.CartItems.Remove(existingCartItem);
                 }
-                if (existingCart.CartItems.Count == 0) 
+                if (existingCart.CartItems.Count == 0)
                 {
                     _carts.Clear();
                 }
             }
         }
 
-        public void Clear(string userId)
+        public void Clear()
         {
-            var existingCart = TryGetByUserId(userId);
             _carts.Clear();
         }
     }
