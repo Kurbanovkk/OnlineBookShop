@@ -1,0 +1,13 @@
+﻿@model decimal
+
+
+<a asp-area="" asp-controller="favourites" asp-action="index" type="button" class="btn btn-primary position-relative">
+    Избранное
+    @if (Model != 0)
+    {
+        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+            @Model
+            <span class="visually-hidden"></span>
+        </span>
+    }
+</a>

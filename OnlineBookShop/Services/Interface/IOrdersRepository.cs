@@ -3,5 +3,6 @@
     public interface IOrdersRepository
     {
         public void Add(Cart cart);
+        public void AddOrder(Order order);
     }
 }

@@ -12,8 +12,15 @@
         { 
             get 
             { 
-                return CartItems.Sum(x => x.Cost);
+                return CartItems?.Sum(x => x.Cost) ?? 0;
             } 
+        }
+        public decimal  Amount
+        {
+            get
+            {
+                return CartItems?.Sum(x => x.Amount) ?? 0;
+            }
         }
     }
 }

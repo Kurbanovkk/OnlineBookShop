@@ -1,5 +1,4 @@
 using OnlineBookShop;
-using OnlineBookShop.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 

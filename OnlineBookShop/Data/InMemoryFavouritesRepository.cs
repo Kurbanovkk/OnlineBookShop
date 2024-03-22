@@ -24,6 +24,7 @@
                         new FavouritesItem
                         {
                             Id = Guid.NewGuid(),
+                            Amount = 1,
                             Product = product
                         }
                     }
@@ -37,13 +38,14 @@
 
                 if (existingFavoritesItem != null)
                 {
-                    return;
+                    existingFavoritesItem.Amount++;
                 }
                 else
                 {
                     existingFavourites.FavouritesItems.Add(new FavouritesItem
                     {
                         Id = Guid.NewGuid(),
+                        Amount = 1,
                         Product = product
                     });
                 }

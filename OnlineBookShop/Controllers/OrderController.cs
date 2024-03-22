@@ -18,10 +18,14 @@ namespace OnlineBookShop.Controllers
             return View(cart);
         }
 
-        public IActionResult Buy()
+        [HttpPost]
+        public IActionResult Buy(Order order)
         {
+            var cart = _cartsRepository.TryGetByUserId(Constants.UserId);
+            _ordersRepository.AddOrder(order);
+            _ordersRepository.Add(cart);
             _cartsRepository.Clear();
-            return View("/Views/Order/OrderEnd.cshtml");
+            return View();
         }
     }
 }

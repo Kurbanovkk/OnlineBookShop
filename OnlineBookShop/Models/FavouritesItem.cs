@@ -13,5 +13,7 @@
                 return Product.Cost;
             }
         }
+
+        public int Amount { get; set; }
     }
 }
