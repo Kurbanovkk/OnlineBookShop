@@ -1,12 +1,14 @@
 ﻿@model decimal
 
-<a asp-area="" asp-controller="cart" asp-action="index" type="button" class="btn btn-success position-relative">
+<a asp-area="" asp-controller="cart" asp-action="index" type="button" class="bi bi-cart4">
     Корзина
+    <h17>
     @if (Model != 0)
     {
-        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+        <span class="position-absolute top-20 start-70 translate-middle badge rounded-pill bg-danger">
             @Model
         <span class="visually-hidden"></span>
     </span>
     }
+    </h17>
 </a>

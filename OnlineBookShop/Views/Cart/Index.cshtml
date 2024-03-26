@@ -36,7 +36,7 @@ else
             </table>
             <div align="right">
                 <h3>Итого</h3>
-                <h4>@Model.Cost руб</h4>
+                <h4>@string.Format("{0:### ### ###}", Model.Cost) руб</h4>
             </div>
             <div align="center">
                 <a class="btn btn-danger bi bi-cart-x" href="/cart/clear" role="button"> >Очистить корзину</a>

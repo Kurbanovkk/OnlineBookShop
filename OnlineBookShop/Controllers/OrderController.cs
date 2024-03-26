@@ -21,11 +21,10 @@ namespace OnlineBookShop.Controllers
         [HttpPost]
         public IActionResult Buy(Order order)
         {
-            var cart = _cartsRepository.TryGetByUserId(Constants.UserId);
+            order.Cart = _cartsRepository.TryGetByUserId(Constants.UserId);
             _ordersRepository.AddOrder(order);
-            _ordersRepository.Add(cart);
             _cartsRepository.Clear();
-            return View();
+            return View(order);
         }
     }
 }
