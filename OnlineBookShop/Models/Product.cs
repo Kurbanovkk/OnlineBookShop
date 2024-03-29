@@ -5,9 +5,9 @@
         private static int _instanceCounter = 0;
         public int Id { get;}
         public string Name { get; set; }
-        public string Description { get;}
-        public decimal Cost { get;}
-        public string Link { get; }
+        public string Description { get; set; }
+        public decimal Cost { get; set; }
+        public string Link { get; set; }
 
         public Product(string name, string description, decimal cost, string link)
         {

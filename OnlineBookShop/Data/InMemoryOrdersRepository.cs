@@ -10,5 +10,10 @@ namespace OnlineBookShop
         {
             _orders.Add(order);
         }
+
+        public List<Order> GetOrders()
+        {
+            return _orders;
+        }
     }
 }
