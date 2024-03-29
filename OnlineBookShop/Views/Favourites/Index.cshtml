@@ -22,7 +22,7 @@ else
                     @foreach (var item in Model.FavouritesItems)
                     {
                         <tr>
-                            <td style="color:navy" href="/product/index/@item.Id">@item.Product.Name</td>
+                            <td style="color:navy" asp-controller="product" asp-action="index" asp-route-id="@item.Id">@item.Product.Name</td>
                             <td>
                                 @string.Format("{0:### ### ###}", item.Product.Cost) руб
                             </td>
