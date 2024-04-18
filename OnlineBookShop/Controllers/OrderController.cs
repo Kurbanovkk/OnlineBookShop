@@ -19,9 +19,15 @@ namespace OnlineBookShop.Controllers
         }
 
         [HttpPost]
-        public IActionResult Buy(Order order)
+        public IActionResult Buy(UserDeliveryInfo user)
         {
-            order.Cart = _cartsRepository.TryGetByUserId(Constants.UserId);
+            var existingCart = _cartsRepository.TryGetByUserId(Constants.UserId);
+
+            var order = new Order
+            {
+                User = user,
+                Items = existingCart.CartItems
+            };
             _ordersRepository.AddOrder(order);
             _cartsRepository.Clear();
             return View(order);

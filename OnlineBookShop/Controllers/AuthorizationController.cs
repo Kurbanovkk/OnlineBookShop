@@ -11,7 +11,7 @@ namespace OnlineBookShop.Controllers
         }
 
         [HttpPost]
-        public IActionResult Enter(User user)
+        public IActionResult Enter(Login user)
         {
             return Redirect("/Home/Index");
         }
@@ -22,7 +22,7 @@ namespace OnlineBookShop.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddNewUser(User user) 
+        public IActionResult AddNewUser(RegisterUser registerUser) 
         {
             return Redirect("/Home/Index");
         }

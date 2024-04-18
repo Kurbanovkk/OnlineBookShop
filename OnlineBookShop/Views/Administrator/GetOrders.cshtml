@@ -12,10 +12,8 @@
                         @foreach (var order in Model)
                         {
                             <tr>
-                                <td>@order.Cart.Cost</td>
-                                <td>@order.Name</td>
-                                <td>@order.Address</td>
-                                <td>@order.PhoneNumber</td>
+                                <td>@order.User</td>
+                                <td>@order.Items</td>
                             </tr>
                         }
                     </tbody>
