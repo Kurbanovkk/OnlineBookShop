@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using OnlineBookShop.Models;
 
 namespace OnlineBookShop.Controllers
 {

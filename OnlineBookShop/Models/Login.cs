@@ -1,10 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace OnlineBookShop.Models
+namespace OnlineBookShop
 {
     public class Login
     {
-        [Required(ErrorMessage = "Не указано имя пользователя")]
+        [Required(ErrorMessage = "Не указан Логин")]
+        [StringLength(21, MinimumLength = 2, ErrorMessage = "Логин должен содержать от 2х до21 символов")]
+        [EmailAddress(ErrorMessage = "Введите действительную почту")]
         public string UserName { get; set; }
 
         [Required(ErrorMessage = "Не указан пароль")]
