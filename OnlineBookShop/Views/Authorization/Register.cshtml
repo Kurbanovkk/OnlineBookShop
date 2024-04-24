@@ -1,6 +1,7 @@
 ﻿@model RegisterUser
 
 <form method="post">
+    <div class="text-danger font-weight-bold" asp-validation-summary="All"></div>
     <h4>Регистрация</h4>
     <br />
     <div class="row mb-3">
@@ -31,29 +32,5 @@
             <span asp-validation-for="ConfirmPassword"></span>
         </div>
     </div>
-@*     <div class="row mb-3">
-        <label for="UserName" class="col-sm-1 col-form-label">Логин</label>
-        <div class="col-sm-3">
-            <input name="UserName" type="email" class="form-control" id="login" placeholder="Email" required minlenght="2" maxlenght="21">
-        </div>
-    </div>
-    <div class="row mb-3">
-        <label for="PhoneNumber" class="col-sm-1 col-form-label">Телефон*</label>
-        <div class="col-sm-3">
-            <input type="tel" pattern="^\d{1} \d{(3)} \d{3}-\d{2}-\d{2}$" class="form-control" name="phoneNumber" placeholder="+7 (928) 555-55-55" required>
-        </div>
-    </div>
-    <div class="row mb-3">
-        <label for="password" class="col-sm-1 col-form-label">Пароль</label>
-        <div class="col-sm-3">
-            <input name="Password" type="password" class="form-control" id="password" placeholder="*********" required>
-        </div>
-    </div>
-    <div class="row mb-3">
-        <label for="password" class="col-sm-1 col-form-label">Повторите пароль</label>
-        <div class="col-sm-3">
-            <input name="ConfirmPassword" type="password" class="form-control" id="password" placeholder="*********" required>
-        </div>
-    </div> *@
     <button type="submit" class="btn btn-outline-primary" asp-controller="authorization" asp-action="AddNewUser">Зарегистрироваться</button>
 </form>

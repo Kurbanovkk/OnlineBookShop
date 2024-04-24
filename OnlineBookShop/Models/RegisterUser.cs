@@ -14,7 +14,7 @@ namespace OnlineBookShop
         [Required(ErrorMessage ="Введите пароль")]
         public string Password { get; set; }
 
-        [Required(ErrorMessage ="НЕ указан пароль для подтверждения")]
+        [Required(ErrorMessage ="Не указан пароль для подтверждения")]
         [Compare("Password", ErrorMessage ="Пароли не совпадают")]
         public string ConfirmPassword { get; set; }
     }

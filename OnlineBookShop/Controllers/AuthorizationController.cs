@@ -23,7 +23,15 @@ namespace OnlineBookShop.Controllers
         [HttpPost]
         public IActionResult AddNewUser(RegisterUser registerUser) 
         {
-            return Redirect("/Home/Index");
+            if (registerUser.UserName == registerUser.Password)
+            {
+                ModelState.AddModelError("","Логин и пароль не должны словпадать");
+            }
+            if(ModelState.IsValid)
+            {
+                return Redirect("/Home/Index");
+            }
+            return View(registerUser);
         }
     }
 }
