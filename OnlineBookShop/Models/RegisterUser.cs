@@ -7,7 +7,7 @@ namespace OnlineBookShop
         [Required(ErrorMessage = "Не указан Логин")]
         [StringLength(21, MinimumLength =2,ErrorMessage ="Логин должен содержать от 2х до21 символов")]
         [EmailAddress(ErrorMessage ="Введите действительную почту")]
-        public string UserName { get; set; }
+        public string Email { get; set; }
         [Required(ErrorMessage = "Введите номер тлефона")]
         public string PhoneNumber { get; set; }
 

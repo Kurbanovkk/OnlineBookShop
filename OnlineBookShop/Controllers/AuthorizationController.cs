@@ -10,9 +10,13 @@ namespace OnlineBookShop.Controllers
         }
 
         [HttpPost]
-        public IActionResult Enter(Login user)
+        public IActionResult Index(Login user)
         {
-            return Redirect("/Home/Index");
+            if (ModelState.IsValid)
+            {
+                return Redirect("/Home/Index");
+            }
+            return View(user);
         }
         
         public IActionResult Register()
@@ -21,9 +25,9 @@ namespace OnlineBookShop.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddNewUser(RegisterUser registerUser) 
+        public IActionResult RegisterUser(RegisterUser registerUser) 
         {
-            if (registerUser.UserName == registerUser.Password)
+            if (registerUser.Email == registerUser.Password)
             {
                 ModelState.AddModelError("","Логин и пароль не должны словпадать");
             }
