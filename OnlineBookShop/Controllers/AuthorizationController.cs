@@ -10,13 +10,13 @@ namespace OnlineBookShop.Controllers
         }
 
         [HttpPost]
-        public IActionResult Index(Login user)
+        public IActionResult Index(Login login)
         {
             if (ModelState.IsValid)
             {
                 return Redirect("/Home/Index");
             }
-            return View(user);
+            return View(login);
         }
         
         public IActionResult Register()
@@ -25,7 +25,7 @@ namespace OnlineBookShop.Controllers
         }
 
         [HttpPost]
-        public IActionResult RegisterUser(RegisterUser registerUser) 
+        public IActionResult Register(RegisterUser registerUser) 
         {
             if (registerUser.Email == registerUser.Password)
             {

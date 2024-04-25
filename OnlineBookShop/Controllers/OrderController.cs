@@ -21,6 +21,19 @@ namespace OnlineBookShop.Controllers
         [HttpPost]
         public IActionResult Buy(UserDeliveryInfo user)
         {
+            if (!user.Name.All(c => char.IsLetter(c) || c == ' '))
+            {
+                ModelState.AddModelError("", "ФИО должны содержать только буквы");
+            }
+            if (!user.PhoneNumber.All(c => char.IsDigit(c) || "+()- ".Contains(c)))
+            {
+                ModelState.AddModelError("", "Номер телефона может содержать только цифры и символы '+()-'");
+            }
+            if (!ModelState.IsValid)
+            {
+                return View("Index");
+            }
+
             var existingCart = _cartsRepository.TryGetByUserId(Constants.UserId);
 
             var order = new Order
