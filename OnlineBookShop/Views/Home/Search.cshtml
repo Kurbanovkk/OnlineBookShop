@@ -19,7 +19,7 @@
                 <h5>@string.Format("{0:### ### ###}", product.Cost) р</h5>
                 <p style="font-size:10px">@product.Description</p>
                 <a class="btn btn-outline-warning" title="Подробнее о товаре" asp-controller="product" asp-action="index" asp-route-id="@product.Id"> <i class="bi bi-info-square"></i> </a>
-                <a class="btn btn-outline-warning" title="Добавить в избранное" asp-controller="favourites" asp-action="add" asp-route-id="@product.Id"> <i class="bi bi-heart"></i> </a>
+                <a class="btn btn-outline-warning" title="Добавить в избранное" asp-controller="favourites" asp-action="add" asp-route-productid="@product.Id"> <i class="bi bi-heart"></i> </a>
                 <a class="btn btn-warning" asp-controller="cart" asp-action="add" asp-route-productid="@product.Id"> <i class="bi bi-cart"> В корзину </i> </a>
             </div>
         </div>
