@@ -12,6 +12,10 @@ namespace OnlineBookShop.Controllers
         [HttpPost]
         public IActionResult Index(Login login)
         {
+            if (login.UserName == login.Password)
+            {
+                ModelState.AddModelError("", "Логин и пароль не должны словпадать");
+            }
             if (ModelState.IsValid)
             {
                 return Redirect("/Home/Index");

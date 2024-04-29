@@ -56,6 +56,10 @@ namespace OnlineBookShop.Controllers
         [HttpPost]
         public IActionResult AddProduct(ProductEdit newProduct) 
         {
+            if (!ModelState.IsValid)
+            {
+                return View("Index");
+            }
             var product = _productRepository.GetProducts();
             product.Add(new Product(newProduct.Name, newProduct.Description, newProduct.Cost, newProduct.Link));
             return View();
@@ -69,7 +73,11 @@ namespace OnlineBookShop.Controllers
 
         [HttpPost]
         public IActionResult EditProduct(ProductEdit productEdit,int id) 
-        { 
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("Index");
+            }
             var currentProduct = _productRepository.TryGetById(id);
             currentProduct.Name = productEdit.Name;
             currentProduct.Cost = productEdit.Cost;

@@ -6,6 +6,7 @@ namespace OnlineBookShop
     {
         [Required(ErrorMessage = "Поле ФИО должно быть заполнено")]
         [StringLength(70, MinimumLength = 3, ErrorMessage = "ФИО должно содержать от 3 до 70 символов")]
+        //[RegularExpression(@"^[a-zA-Z\s]+$", ErrorMessage = "Используйте только буквы и пробел")]
         public string Name { get; set; }
 
         [Required(ErrorMessage = "Поле Адрес должно быть заполнено")]
@@ -14,6 +15,7 @@ namespace OnlineBookShop
 
         [Required(ErrorMessage = "Поле Телефон должно быть заполнено")]
         [StringLength(20, MinimumLength = 5, ErrorMessage = "Поле Телефон должно содержать от 5 до 20 символов")]
+        [RegularExpression(@"^[\d\+]+$", ErrorMessage = "Используйте только цифры и символ '+'")]
         public string PhoneNumber { get; set; }
 
         public string Comment { get; set; }

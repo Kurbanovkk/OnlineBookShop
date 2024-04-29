@@ -1,9 +1,9 @@
-﻿@model Cart;
+﻿@model UserDeliveryInfo;
 
 <div class="row">
 
     @*форма заказа*@
-        <h4>Ваш заказ</h4>
+@*         <h4>Ваш заказ</h4>
         <table class="table" style="font-size:12px">
             <thead>
                 <tr>
@@ -32,26 +32,31 @@
         <div class="text-end">
             <h6>Итого: @string.Format("{0:### ### ###}", Model.Cost) руб.</h6>
         </div>
-    <div class="col-1"></div>
+    <div class="col-1"></div> *@
 
     @*форма данных покупателя*@
         <form method="post">
-            <div class="form-group" style="margin:10px">
-                <label for="exampleFormControlInput1">ФИО*</label>
-                <input type="text" class="form-control" name="name" placeholder="Алиев Али Алиевич">
-            </div>
-            <div class="form-group" style="margin:10px">
-                <label for="exampleFormControlInput3">Телефон*</label>
-                <input type="tel" class="form-control" name="phoneNumber" placeholder="+7 (928) 555-55-55">
-            </div>
-            <div class="form-group" style="margin:10px">
-                <label for="exampleFormControlInput4">Адрес*</label>
-                <input type="text" class="form-control" name="address" placeholder="г. Махачкала, ул. Толстого, д. 1">
-            </div>
-            <div class="form-group" style="margin:10px">
-                <label for="exampleFormControlTextarea1">Комментарии к заказу</label>
-                <textarea class="form-control" name="comment" rows="3"></textarea>
-            </div>
+        <div class="text-danger font-weight-bold" asp-validation-summary="ModelOnly"></div>
+        <div class="form-group" style="margin:10px">
+            <label asp-for="Name" col-form-label">ФИО</label>
+            <input asp-for="Name" placeholder="Алиев Али Алиевич" class="form-control">
+            <span asp-validation-for="Name"></span>
+        </div>
+        <div class="form-group" style="margin:10px">
+            <label asp-for="PhoneNumber" col-form-label">Телефон</label>
+            <input asp-for="PhoneNumber" placeholder="+7 (928) 555-55-55" class="form-control">
+            <span asp-validation-for="PhoneNumber"></span>
+        </div>
+        <div class="form-group" style="margin:10px">
+            <label asp-for="Address" col-form-label">Адрес</label>
+            <input asp-for="Address" placeholder="г. Махачкала, ул. Толстого, д. 1" class="form-control">
+            <span asp-validation-for="Address"></span>
+        </div>
+        <div class="form-group" style="margin:10px">
+            <label asp-for="Comment" col-form-label">Комментарий к заказу</label>
+            <input type="text" asp-for="Comment" placeholder="г. Махачкала, ул. Толстого, д. 1" class="form-control" rows="3">
+            <span asp-validation-for="Comment"></span>
+       
             <div class="text-center" style="margin:30px">
                 <a class="btn btn-outline-secondary btn-lg" asp-controller="home" asp-action="index">Продолжить покупки</a>
                 <button class="btn btn-outline-success btn-lg" type="submit" asp-controller="order" asp-action="buy">Оформить заказ</button>
