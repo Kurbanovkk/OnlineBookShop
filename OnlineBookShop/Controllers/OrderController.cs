@@ -40,5 +40,11 @@ namespace OnlineBookShop.Controllers
             _cartsRepository.Clear();
             return View(order);
         }
+
+        public IActionResult Orders()
+        {
+            var orders = _ordersRepository.GetOrders();
+            return View(orders);
+        }
     }
 }

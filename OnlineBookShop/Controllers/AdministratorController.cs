@@ -9,10 +9,12 @@ namespace OnlineBookShop.Controllers
 
         private readonly IProductsRepository _productRepository;
         private readonly IOrdersRepository _ordersRepository;
-        public AdministratorController(IProductsRepository productRepository, IOrdersRepository ordersRepository)
+        private readonly IRolesRepository _rolesRepository;
+        public AdministratorController(IProductsRepository productRepository, IOrdersRepository ordersRepository, IRolesRepository rolesRepository)
         {
             _productRepository = productRepository;
             _ordersRepository = ordersRepository;
+            _rolesRepository = rolesRepository;
         }
         public IActionResult Index()
         {
@@ -25,6 +27,23 @@ namespace OnlineBookShop.Controllers
             return View(orders);
         }
 
+        public IActionResult EditStatusOrders(Guid id)
+        {
+            var orders = _ordersRepository.GetOrders();
+            var currentOrder = orders.FirstOrDefault(order => order.Id == id);
+            return View(currentOrder);
+        }
+
+        [HttpPost]
+        public IActionResult EditStatusOrders(Guid Id, OrderStatuses Status)
+        {
+            var orders = _ordersRepository.GetOrders();
+            var currentOrder = orders.FirstOrDefault(order => order.Id == Id);
+            currentOrder.Status = Status;
+            currentOrder.EditStatusOrder = DateTime.Now.ToString("dd-MM-yyyy HH:mm");
+            return RedirectToAction("GetOrders");
+        }
+
         public IActionResult GetUsers()
         {
             return View();
@@ -32,7 +51,37 @@ namespace OnlineBookShop.Controllers
 
         public IActionResult GetRoles()
         {
+            var roles = _rolesRepository.GetAllRoles();
+            return View(roles);
+        }
+        public IActionResult AddRoles()
+        {
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddRoles(Roles role)
+        {
+            var roles = _rolesRepository.GetAllRoles();
+            if (roles.FirstOrDefault(r => r.Name == role.Name) != null)
+            {
+                ModelState.AddModelError("", "Такая роль уже есть");
+            }
+            if (!ModelState.IsValid)
+            {
+                return View(role);
+            }
+            _rolesRepository.Add(role);
+            return RedirectToAction("GetRoles");
+        }
+
+        [HttpPost]
+        public IActionResult DelRoles(string Name)
+        {
+            var roles = _rolesRepository.GetAllRoles();
+            var currentRole = roles.FirstOrDefault(role => role.Name == Name);
+            _rolesRepository.Del(currentRole);
+            return RedirectToAction("GetRoles");
         }
 
         public IActionResult GetProducts()
@@ -54,7 +103,7 @@ namespace OnlineBookShop.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddProduct(ProductEdit newProduct) 
+        public IActionResult AddProduct(ProductEdit newProduct)
         {
             if (!ModelState.IsValid)
             {
@@ -72,7 +121,7 @@ namespace OnlineBookShop.Controllers
         }
 
         [HttpPost]
-        public IActionResult EditProduct(ProductEdit productEdit,int id) 
+        public IActionResult EditProduct(ProductEdit productEdit, int id)
         {
             if (!ModelState.IsValid)
             {
@@ -85,5 +134,6 @@ namespace OnlineBookShop.Controllers
             currentProduct.Link = productEdit.Link;
             return RedirectToAction("GetProducts");
         }
+
     }
 }

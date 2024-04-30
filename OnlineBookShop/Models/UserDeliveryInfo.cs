@@ -4,6 +4,10 @@ namespace OnlineBookShop
 {
     public class UserDeliveryInfo
     {
+        [Required(ErrorMessage = "Не указана Почта")]
+        [StringLength(21, MinimumLength = 2, ErrorMessage = "Почта должна содержать от 2х до21 символов")]
+        [EmailAddress(ErrorMessage = "Введите действительную почту")]
+        public string Email { get; set; }
         [Required(ErrorMessage = "Поле ФИО должно быть заполнено")]
         [StringLength(70, MinimumLength = 3, ErrorMessage = "ФИО должно содержать от 3 до 70 символов")]
         //[RegularExpression(@"^[a-zA-Z\s]+$", ErrorMessage = "Используйте только буквы и пробел")]
