@@ -1,16 +1,16 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using OnlineBookShop;
 
 namespace OnlineBookShop.Controllers
 {
-    public class AdministratorController : Controller
+    [Area("Home")]
+    public class HomeControllers : Controller
     {
 
         private readonly IProductsRepository _productRepository;
         private readonly IOrdersRepository _ordersRepository;
         private readonly IRolesRepository _rolesRepository;
-        public AdministratorController(IProductsRepository productRepository, IOrdersRepository ordersRepository, IRolesRepository rolesRepository)
+        public HomeControllers(IProductsRepository productRepository, IOrdersRepository ordersRepository, IRolesRepository rolesRepository)
         {
             _productRepository = productRepository;
             _ordersRepository = ordersRepository;
