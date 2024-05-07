@@ -12,7 +12,7 @@ builder.Services.AddSingleton<IRolesRepository, InMemoryRolesRepository>();
 builder.Services.AddControllersWithViews();
 builder.Host.UseSerilog((context, configuration) => configuration
 .ReadFrom.Configuration(context.Configuration)
-.Enrich.WithProperty("ApplicationName", "Online Book Shop"));
+.Enrich.WithProperty("ApplicationName", "OnlineBookShop"));
 
 var app = builder.Build();
 
@@ -33,7 +33,7 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapControllerRoute(
-    name: "MyArea",
+    name: "Administrator",
     pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 
 app.MapControllerRoute(
