@@ -1,26 +1,46 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Win32;
 
 namespace OnlineBookShop.Controllers
 {
     public class AuthorizationController : Controller
     {
+        private readonly IUsersRepository _usersRepository;
+
+        public AuthorizationController(IUsersRepository usersRepository)
+        {
+            _usersRepository = usersRepository;
+        }
         public IActionResult Index()
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult Index(Login login)
+        public IActionResult Index(Login user)
         {
-            if (login.UserName == login.Password)
+            var userAccount = _usersRepository.TryGetByName(user.UserName);
+            if (userAccount == null)
+            {
+                ModelState.AddModelError("", "Пользователь с таким именем не найден. Проверьте имя или зарегистрируйтесь.");
+                return View(user);
+            }
+
+            
+            if (userAccount.Password != user.Password)
+            {
+                ModelState.AddModelError("", "Неверный пароль");
+                return View(user);
+            }
+            if (user.UserName == user.Password)
             {
                 ModelState.AddModelError("", "Логин и пароль не должны словпадать");
             }
             if (ModelState.IsValid)
             {
-                return Redirect("/Home/Index");
+                return RedirectToAction(nameof(HomeController.Index), "Home");
             }
-            return View(login);
+            return RedirectToAction(nameof(HomeController.Index), "Home");
         }
         
         public IActionResult Register()
@@ -31,15 +51,22 @@ namespace OnlineBookShop.Controllers
         [HttpPost]
         public IActionResult Register(RegisterUser registerUser) 
         {
-            if (registerUser.Email == registerUser.Password)
+            var userAccount = _usersRepository.TryGetByName(registerUser.UserName);
+            if (userAccount != null)
+            {
+                ModelState.AddModelError("", "Пользователь с таким именем уже есть.");
+                return View(registerUser);
+            }
+            if (registerUser.UserName == registerUser.Password)
             {
                 ModelState.AddModelError("","Логин и пароль не должны словпадать");
             }
             if(ModelState.IsValid)
             {
-                return Redirect("/Home/Index");
+                _usersRepository.Add(new User(registerUser.UserName, registerUser.Password, registerUser.Name, registerUser.PhoneNumber));
+                return RedirectToAction(nameof(AuthorizationController.Index), "Authorization");
             }
-            return View(registerUser);
+            return RedirectToAction(nameof(HomeController.Index), "Home");
         }
     }
 }
