@@ -63,7 +63,7 @@ namespace OnlineBookShop.Controllers
             }
             if(ModelState.IsValid)
             {
-                _usersRepository.Add(new User(registerUser.UserName, registerUser.Password, registerUser.Name, registerUser.PhoneNumber));
+                _usersRepository.AddUser(new User(registerUser.UserName, registerUser.Password, registerUser.Name, registerUser.PhoneNumber));
                 return RedirectToAction(nameof(AuthorizationController.Index), "Authorization");
             }
             return RedirectToAction(nameof(HomeController.Index), "Home");

@@ -33,7 +33,7 @@ namespace OnlineBookShop.Areas.Administrator.Controllers
                 return View(role);
             }
             _rolesRepository.Add(role);
-            return RedirectToAction("GetRoles");
+            return RedirectToAction("Index");
         }
 
         [HttpPost]
@@ -42,7 +42,7 @@ namespace OnlineBookShop.Areas.Administrator.Controllers
             var roles = _rolesRepository.GetAllRoles();
             var currentRole = roles.FirstOrDefault(role => role.Name == Name);
             _rolesRepository.Del(currentRole);
-            return RedirectToAction("GetRoles");
+            return RedirectToAction("Index");
         }
     }
 }

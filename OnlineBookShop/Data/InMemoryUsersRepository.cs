@@ -5,11 +5,10 @@ namespace OnlineBookShop
     {
         private readonly List<User> _users = new List<User>()
         {
-            new User("Magomed@mail.ru", "12345678", "Магомед", "+79285846357"),
-            new User("Musa@mail.ru", "12345678", "Муса", "+79284875124")
+            new User("Magomed@mail.ru", "12345678", "Магомед", "+79285846357")
         };
 
-        public void Add(User user)
+        public void AddUser(User user)
         {
             _users.Add(user);
         }
@@ -37,7 +36,7 @@ namespace OnlineBookShop
             var currentUser = TryGetById(userId);
             currentUser.Name = user.UserName;
             currentUser.Name = user.Name;
-            currentUser.Phone = user.Phone;
+            currentUser.PhoneNumber = user.Phone;
         }
 
         public List<User> GetUsers()

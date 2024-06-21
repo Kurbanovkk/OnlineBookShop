@@ -30,7 +30,7 @@ namespace OnlineBookShop.Areas.Administrator.Controllers
             var currentOrder = orders.FirstOrDefault(order => order.Id == Id);
             currentOrder.Status = Status;
             currentOrder.EditStatusOrder = DateTime.Now.ToString("dd-MM-yyyy HH:mm");
-            return RedirectToAction("GetOrders");
+            return RedirectToAction("Index");
         }
     }
 }

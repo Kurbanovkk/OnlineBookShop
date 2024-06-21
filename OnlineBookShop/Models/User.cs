@@ -18,17 +18,17 @@ namespace OnlineBookShop
         public string Name { get; set; }
         [Required(ErrorMessage = "Не указан телефон пользователя")]
         [StringLength(50, MinimumLength = 5, ErrorMessage = "Телефон пользователя должно содержать от 5 до 50 символов")]
-        public string Phone { get; set; }
+        public string PhoneNumber { get; set; }
         public Roles Role { get; set; }
 
-        public User(string name, string password, string firstName, string phone)
+        public User(string username, string password, string name, string phone)
         {
             Id = Guid.NewGuid();
-            Role = new Roles("User");
-            UserName = name;
+            UserName = username;
+            Name = name;
+            PhoneNumber = phone;
             Password = password;
-            Name = firstName;
-            Phone = phone;
+            Role = new Roles("User");
         }
     }
 }
