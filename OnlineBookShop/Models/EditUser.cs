@@ -17,7 +17,6 @@ namespace OnlineBookShop
         public string Name { get; set; }
         [Required(ErrorMessage = "Не указан телефон пользователя")]
         [StringLength(50, MinimumLength = 5, ErrorMessage = "Телефон пользователя должно содержать от 5 до 50 символов")]
-        public string Phone { get; set; }
-        public Roles Role { get; set; }
+        public string PhoneNumber { get; set; }
     }
 }

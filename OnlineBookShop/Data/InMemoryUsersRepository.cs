@@ -31,12 +31,12 @@ namespace OnlineBookShop
             _users.Remove(user);
         }
 
-        public void Edit(EditUser user, Guid userId)
+        public void Edit(EditUser user, Guid Id)
         {
-            var currentUser = TryGetById(userId);
-            currentUser.Name = user.UserName;
+            var currentUser = TryGetById(Id);
+            currentUser.UserName = user.UserName;
             currentUser.Name = user.Name;
-            currentUser.PhoneNumber = user.Phone;
+            currentUser.PhoneNumber = user.PhoneNumber;
         }
 
         public List<User> GetUsers()

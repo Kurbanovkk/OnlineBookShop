@@ -1,0 +1,38 @@
+﻿@using OnlineBookShop
+@model RegisterUser
+
+<form method="post">
+    <div class="text-danger font-weight-bold" asp-validation-summary="ModelOnly"></div>
+    <h4>Регистрация нового пользователя</h4>
+    <br />
+    <div class="row mb-3">
+        <label asp-for="UserName" class="col-sm-1 col-form-label">Логин</label>
+        <div class="col-sm-3">
+            <input type="UserName" asp-for="UserName" placeholder="Email" class="form-control">
+            <span asp-validation-for="UserName"></span>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label asp-for="Name" class="col-sm-1 col-form-label">Имя</label>
+        <div class="col-sm-3">
+            <input asp-for="Name" placeholder="Иван" class="form-control">
+            <span asp-validation-for="Name"></span>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label asp-for="PhoneNumber" class="col-sm-1 col-form-label">Телефон</label>
+        <div class="col-sm-3">
+            <input asp-for="PhoneNumber" placeholder="+7 (928) 555-55-55" class="form-control">
+            <span asp-validation-for="PhoneNumber"></span>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label asp-for="Password" class="col-sm-1 col-form-label">Пароль</label>
+        <div class="col-sm-3">
+            <input type="Password" asp-for="Password" placeholder="*********" class="form-control">
+            <span asp-validation-for="Password"></span>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-outline-primary" asp-area="Administrator" asp-controller="Users" asp-action="AddUser">Зарегистрировать</button>
+    <button type="submit" class="btn btn-outline-primary" asp-area="Administrator" asp-controller="Users" asp-action="Index">Вернуться назад</button>
+</form>
