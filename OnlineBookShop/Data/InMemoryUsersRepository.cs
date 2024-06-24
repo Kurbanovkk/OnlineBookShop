@@ -13,30 +13,22 @@ namespace OnlineBookShop
             _users.Add(user);
         }
 
-        public void ChangeAccess(Guid userId, string roleName)
+        public void ChangeAccess(Guid id, string roleName)
         {
-            var currentUser = TryGetById(userId);
+            var currentUser = TryGetById(id);
             currentUser.Role.Name = roleName;
         }
 
-        public void ChangePassword(Guid userId, string password)
+        public void ChangePassword(Guid id, string password)
         {
-            var currentUser = TryGetById(userId);
+            var currentUser = TryGetById(id);
             currentUser.Password = password;
         }
 
-        public void Del(Guid userId)
+        public void Del(Guid id)
         {
-            var user = TryGetById(userId);
+            var user = TryGetById(id);
             _users.Remove(user);
-        }
-
-        public void Edit(EditUser user, Guid Id)
-        {
-            var currentUser = TryGetById(Id);
-            currentUser.UserName = user.UserName;
-            currentUser.Name = user.Name;
-            currentUser.PhoneNumber = user.PhoneNumber;
         }
 
         public List<User> GetUsers()
@@ -44,9 +36,9 @@ namespace OnlineBookShop
             return _users;
         }
 
-        public User TryGetById(Guid userId)
+        public User TryGetById(Guid id)
         {
-            return _users.FirstOrDefault(user => user.Id == userId);
+            return _users.FirstOrDefault(user => user.Id == id);
         }
 
         public User TryGetByName(string name)

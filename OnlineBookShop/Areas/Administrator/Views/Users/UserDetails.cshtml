@@ -27,9 +27,9 @@
             <br />
             <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Действия</button>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" asp-area="Administrator" asp-controller="Users" asp-action="ChangePassword" asp-route-userId="@Model.Id">Смена пароля</a></li>
-                <li><a class="dropdown-item" asp-area="Administrator" asp-controller="Users" asp-action="EditUser" asp-route-userId="@Model.Id">Редактирование данных</a></li>
-                <li><a class="dropdown-item" asp-area="Administrator" asp-controller="Users" asp-action="ChangeAccess" asp-route-userId="@Model.Id">Права доступа</a></li>
+                <li><a class="dropdown-item" asp-area="Administrator" asp-controller="Users" asp-action="EditPassword" asp-route-Id="@Model.Id">Смена пароля</a></li>
+                <li><a class="dropdown-item" asp-area="Administrator" asp-controller="Users" asp-action="EditUser" asp-route-Id="@Model.Id">Редактирование данных</a></li>
+                <li><a class="dropdown-item" asp-area="Administrator" asp-controller="Users" asp-action="EditRole" asp-route-Id="@Model.Id">Права доступа</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <!-- Кнопка-триггер модального окна -->
                 <li><button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal">Удалить пользователя</button></li>
@@ -51,7 +51,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
-                <a type="button" asp-area="Administrator" class="btn btn-primary" asp-controller="Users" asp-action="Del" asp-route-id="@Model.Id">Удалить</a>
+                <a type="button" asp-area="Administrator" class="btn btn-primary" asp-controller="Users" asp-action="Del" asp-route-Id="@Model.Id">Удалить</a>
             </div>
         </div>
     </div>

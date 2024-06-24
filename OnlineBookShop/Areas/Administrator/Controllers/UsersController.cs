@@ -41,7 +41,10 @@ namespace OnlineBookShop.Areas.Administrator.Controllers
                 return View(registerUser);
             }
             if (!ModelState.IsValid)
+            {
                 return View(registerUser);
+            }    
+                
             _usersRepository.AddUser(new User(registerUser.UserName, registerUser.Password, registerUser.Name, registerUser.PhoneNumber));
             return RedirectToAction(nameof(Index));
         }
@@ -55,20 +58,50 @@ namespace OnlineBookShop.Areas.Administrator.Controllers
         public IActionResult EditUser(Guid id)
         {
             var user = _usersRepository.TryGetById(id);
-            var editUser = new EditUser();
-            editUser.UserName = user.UserName;
-            editUser.Name = user.Name;
-            editUser.PhoneNumber = user.PhoneNumber;
-            ViewData["id"] = id;
-            return View(editUser);
+            return View(user);
         }
 
         [HttpPost]
-        public IActionResult EditUser(EditUser editUser, Guid id)
+        public IActionResult EditUser(UserEdit userEdit, Guid id)
         {
-            if(!ModelState.IsValid) { return View(editUser); }
+            if(!ModelState.IsValid) { return View(userEdit); }
 
-            _usersRepository.Edit(editUser, id);
+            var currentUser = _usersRepository.TryGetById(id);
+            currentUser.UserName = userEdit.UserName;
+            currentUser.Name = userEdit.Name;
+            currentUser.PhoneNumber = userEdit.PhoneNumber;
+            return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult EditPassword(Guid id)
+        {
+            var user = _usersRepository.TryGetById(id);
+            ViewData["id"] = id;
+            ViewData["userName"] = user.UserName;
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult EditPassword(Guid id, string password)
+        {
+            _usersRepository.ChangePassword(id, password);
+            return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult EditRole(Guid id)
+        {
+            var user = _usersRepository.TryGetById(id);
+            var roles = _rolesRepository.GetAllRoles();
+            ViewData["id"] = id;
+            ViewData["userName"] = user.UserName;
+            ViewData["userRole"] = user.Role.Name;
+            return View(roles);
+        }
+
+        [HttpPost]
+        public IActionResult EditRole(Guid id, string role)
+        {
+            _usersRepository.ChangeAccess(id, role);
             return RedirectToAction(nameof(Index));
         }
     }

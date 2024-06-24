@@ -33,6 +33,13 @@
             <span asp-validation-for="Password"></span>
         </div>
     </div>
-    <button type="submit" class="btn btn-outline-primary" asp-area="Administrator" asp-controller="Users" asp-action="AddUser">Зарегистрировать</button>
-    <button type="submit" class="btn btn-outline-primary" asp-area="Administrator" asp-controller="Users" asp-action="Index">Вернуться назад</button>
+    <div class="row mb-3">
+        <label asp-for="ConfirmPassword" class="col-sm-1 col-form-label">Повторите пароль</label>
+        <div class="col-sm-3">
+            <input type="Password" asp-for="ConfirmPassword" placeholder="*********" class="form-control">
+            <span asp-validation-for="ConfirmPassword"></span>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-outline-primary" asp-area="Administrator" asp-controller="Users" asp-action="AddUser">Зарегистрировать пользователя</button>
+    <a class="btn btn-outline-primary" asp-area="Administrator" asp-controller="Users" asp-action="Index">Вернуться назад</a>
 </form>
