@@ -1,11 +1,19 @@
 using OnlineBookShop;
 using Serilog;
+using Microsoft.EntityFrameworkCore;
+using OnlineShop.Db;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+// Получаем строку подключения из файла конфигурации
+string connection = builder.Configuration.GetConnectionString("online_book_shop");
+// Добаляем контекст MobileContext в качестве сервиса в приложение
+builder.Services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(connection));
 builder.Services.AddSingleton<IUsersRepository, InMemoryUsersRepository>();
-builder.Services.AddSingleton<IProductsRepository, InMemoryProductsRepository>();
+builder.Services.AddTransient<IProductsRepository, ProductsDbRepository>();
 builder.Services.AddSingleton<ICartsRepository, InMemoryCartsRepository>();
 builder.Services.AddSingleton<IOrdersRepository, InMemoryOrdersRepository>();
 builder.Services.AddSingleton<IFavouritesRepository, InMemoryFavouritesRepository>();

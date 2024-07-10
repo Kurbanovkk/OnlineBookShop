@@ -9,7 +9,7 @@ namespace OnlineBookShop
             return _carts.FirstOrDefault(x => x.UserId == userId);
         }
 
-        public void Add(Product product, string userId)
+        public void Add(ProductViewModel product, string userId)
         {
             var existingCart = TryGetByUserId(userId);
 
@@ -51,7 +51,7 @@ namespace OnlineBookShop
             }
         }
 
-        public void Delete(int productId, string userId)
+        public void Delete(Guid productId, string userId)
         {
             var existingCart = TryGetByUserId(userId);
             {

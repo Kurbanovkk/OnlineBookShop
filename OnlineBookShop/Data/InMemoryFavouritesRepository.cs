@@ -9,7 +9,7 @@
             return _favourites.FirstOrDefault(x => x.UserId == userId);
         }
 
-        public void Add(Product product, string userId)
+        public void Add(ProductViewModel product, string userId)
         {
             var existingFavourites = TryGetByUserId(userId);
 
@@ -56,7 +56,7 @@
             _favourites.Clear();
         }
 
-        public void Delete(int productId, string userId)
+        public void Delete(Guid productId, string userId)
         {
             var existingFavourites = TryGetByUserId(userId);
             var existingFavouritesItem = existingFavourites?.FavouritesItems?.FirstOrDefault(x => x.Product.Id == productId);
