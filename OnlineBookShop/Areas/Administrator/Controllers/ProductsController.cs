@@ -15,8 +15,20 @@ namespace OnlineBookShop
         public IActionResult Index()
         {
             var products = _productRepository.GetProducts();
-
-            return View(products);
+			var productsViewModel = new List<ProductViewModel>();
+			foreach (var product in products)
+			{
+				var productViewModel = new ProductViewModel
+				{
+					Id = product.Id,
+					Name = product.Name,
+					Cost = product.Cost,
+					Description = product.Description,
+					Link = product.Link,
+				};
+				productsViewModel.Add(productViewModel);
+			}
+			return View(productsViewModel);
         }
 
         public IActionResult Del(Guid id)
