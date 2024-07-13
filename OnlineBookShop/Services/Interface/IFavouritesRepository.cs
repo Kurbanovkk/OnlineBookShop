@@ -4,8 +4,8 @@
     {
         public Favourites TryGetByUserId(string userId);
 
-        public void Add(Product product, string userId);
+        public void Add(ProductViewModel product, string userId);
         void Clear();
-        public void Delete(int productId, string userId);
+        public void Delete(Guid productId, string userId);
     }
 }

@@ -2,10 +2,9 @@
 
 namespace OnlineBookShop
 {
-    public class Product
+    public class ProductViewModel
     {
-        private static int _instanceCounter = 0;
-        public int Id { get;}
+        public Guid Id { get; set; }
         [Required(ErrorMessage = "Не указано наименование товара")]
         [StringLength(70, MinimumLength = 3, ErrorMessage = "Наименование должно содержать от 3 до 70 символов")]
         public string Name { get; set; }
@@ -18,19 +17,5 @@ namespace OnlineBookShop
         [Required(ErrorMessage = "Не указан путь изображения товара")]
         [StringLength(100, MinimumLength = 1, ErrorMessage = "Путь должен содержать от 1 до 100 символов")]
         public string Link { get; set; }
-
-        public Product(string name, string description, decimal cost, string link)
-        {
-            Id = ++_instanceCounter;
-            Name = name;
-            Description = description;
-            Cost = cost;
-            Link = link;
-        }
-
-        public override string ToString()
-        {
-            return $"{Id}\n{Name}\n{Cost}";
-        }
     }
 }

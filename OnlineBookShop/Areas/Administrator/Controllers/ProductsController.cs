@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using OnlineShop.Db;
+using OnlineShop.Db.Models;
 
 namespace OnlineBookShop
 {
@@ -13,11 +15,23 @@ namespace OnlineBookShop
         public IActionResult Index()
         {
             var products = _productRepository.GetProducts();
-
-            return View(products);
+			var productsViewModel = new List<ProductViewModel>();
+			foreach (var product in products)
+			{
+				var productViewModel = new ProductViewModel
+				{
+					Id = product.Id,
+					Name = product.Name,
+					Cost = product.Cost,
+					Description = product.Description,
+					Link = product.Link,
+				};
+				productsViewModel.Add(productViewModel);
+			}
+			return View(productsViewModel);
         }
 
-        public IActionResult Del(int id)
+        public IActionResult Del(Guid id)
         {
             _productRepository.Del(id);
             return RedirectToAction("Index");
@@ -36,18 +50,26 @@ namespace OnlineBookShop
                 return View("Index");
             }
             var product = _productRepository.GetProducts();
-            product.Add(new Product(newProduct.Name, newProduct.Description, newProduct.Cost, newProduct.Link));
+            var productDb = new Product
+            {
+                Name = newProduct.Name,
+                Description = newProduct.Description,
+                Cost = newProduct.Cost,
+                Link = newProduct.Link
+
+            };
+            _productRepository.AddProducts(productDb);
             return View();
         }
 
-        public IActionResult EditProduct(int id)
+        public IActionResult EditProduct(Guid id)
         {
             var product = _productRepository.TryGetById(id);
             return View(product);
         }
 
         [HttpPost]
-        public IActionResult EditProduct(ProductEdit productEdit, int id)
+        public IActionResult EditProduct(ProductEdit productEdit, Guid id)
         {
             if (!ModelState.IsValid)
             {
