@@ -1,15 +1,20 @@
 ﻿
-namespace OnlineBookShop
+namespace OnlineShop.Db.Models
 {
-    public class InMemoryCartsRepository : ICartsRepository
+    public class CartsDbRepository : ICartsRepository
     {
-        private List<Cart> _carts = new List<Cart>();
-        public Cart TryGetByUserId(string userId)
+		private readonly DatabaseContext _dataBaseContext;
+
+        public CartsDbRepository(DatabaseContext dataBaseContext)
         {
-            return _carts.FirstOrDefault(x => x.UserId == userId);
+            _dataBaseContext = dataBaseContext;
+        }
+		public Cart TryGetByUserId(string userId)
+        {
+            return _dataBaseContext.Carts.FirstOrDefault(x => x.UserId == userId);
         }
 
-        public void Add(ProductViewModel product, string userId)
+        public void Add(Product product, string userId)
         {
             var existingCart = TryGetByUserId(userId);
 
@@ -17,19 +22,17 @@ namespace OnlineBookShop
             {
                 var newCart = new Cart
                 {
-                    Id = Guid.NewGuid(),
                     UserId = userId,
                     CartItems = new List<CartItem>
                     {
                         new CartItem
                         {
-                            Id = Guid.NewGuid(),
                             Amount = 1,
                             Product = product
                         }
                     }
                 };
-                _carts.Add(newCart);
+				_dataBaseContext.Carts.Add(newCart);
             }
             else
             {
@@ -43,34 +46,36 @@ namespace OnlineBookShop
                 {
                     existingCart.CartItems.Add(new CartItem
                     {
-                        Id = Guid.NewGuid(),
                         Amount = 1,
                         Product = product
                     });
                 }
             }
+            _dataBaseContext.SaveChanges();
         }
 
         public void Delete(Guid productId, string userId)
         {
             var existingCart = TryGetByUserId(userId);
-            {
-                var existingCartItem = existingCart.CartItems.FirstOrDefault(x => x.Product.Id == productId);
+            
+                var existingCartItem = existingCart?.CartItems?.FirstOrDefault(x => x.Product.Id == productId);
+                if (existingCartItem == null)
+                {
+                    return;
+                }
                 existingCartItem.Amount--;
                 if (existingCartItem.Amount == 0)
                 {
                     existingCart.CartItems.Remove(existingCartItem);
                 }
-                if (existingCart.CartItems.Count == 0)
-                {
-                    _carts.Clear();
-                }
-            }
+            _dataBaseContext.SaveChanges();
         }
 
-        public void Clear()
+        public void Clear(string userId)
         {
-            _carts.Clear();
-        }
+			var existingCart = TryGetByUserId(userId);
+            _dataBaseContext.Carts?.Remove(existingCart);
+            _dataBaseContext.SaveChanges();
+		}
     }
 }

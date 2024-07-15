@@ -1,6 +1,6 @@
 ﻿namespace OnlineBookShop
 {
-    public class CartItem
+    public class CartItemViewModel
     {
         public Guid Id { get; set; }
 

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using OnlineShop.Db.Models;
 
 namespace OnlineBookShop.Controllers
 {
@@ -34,10 +35,10 @@ namespace OnlineBookShop.Controllers
             var order = new Order
             {
                 User = user,
-                Items = existingCart.CartItems
+                Items = existingCart.Carts.Clear
             };
             _ordersRepository.AddOrder(order);
-            _cartsRepository.Clear();
+            _cartsRepository.Carts.Clear();
             return View(order);
         }
 

@@ -1,6 +1,7 @@
 ﻿
 using Microsoft.AspNetCore.Mvc;
 using OnlineShop.Db;
+using OnlineShop.Db.Models;
 
 namespace OnlineBookShop.Controllers
 {
@@ -35,7 +36,7 @@ namespace OnlineBookShop.Controllers
 
         public IActionResult Clear()
         {
-            _cartRepository.Clear();
+            _cartRepository.Clear(Constants.UserId);
             return RedirectToAction("Index");
         }
     }

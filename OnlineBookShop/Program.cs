@@ -3,6 +3,7 @@ using Serilog;
 using Microsoft.EntityFrameworkCore;
 using OnlineShop.Db;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using OnlineShop.Db.Models;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,7 +15,7 @@ string connection = builder.Configuration.GetConnectionString("online_book_shop"
 builder.Services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(connection));
 builder.Services.AddSingleton<IUsersRepository, InMemoryUsersRepository>();
 builder.Services.AddTransient<IProductsRepository, ProductsDbRepository>();
-builder.Services.AddSingleton<ICartsRepository, InMemoryCartsRepository>();
+builder.Services.AddTransient<ICartsRepository, CartsDbRepository>();
 builder.Services.AddSingleton<IOrdersRepository, InMemoryOrdersRepository>();
 builder.Services.AddSingleton<IFavouritesRepository, InMemoryFavouritesRepository>();
 builder.Services.AddSingleton<IRolesRepository, InMemoryRolesRepository>();

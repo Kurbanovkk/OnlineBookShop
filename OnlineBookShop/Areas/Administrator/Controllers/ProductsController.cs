@@ -59,6 +59,7 @@ namespace OnlineBookShop
 
             };
             _productRepository.AddProducts(productDb);
+            
             return View();
         }
 

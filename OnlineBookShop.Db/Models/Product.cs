@@ -10,5 +10,7 @@ namespace OnlineShop.Db.Models
         public string Description { get; set; }
         public decimal Cost { get; set; }
         public string Link { get; set; }
+
+        public CartItem CartItem { get; set; }
     }
 }

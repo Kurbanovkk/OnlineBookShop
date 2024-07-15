@@ -1,7 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 public class ProductEdit
     {
-        [Required(ErrorMessage = "Не указано наименование товара")]
+	    public Guid Id { get; set; }
+	    [Required(ErrorMessage = "Не указано наименование товара")]
         [StringLength(70, MinimumLength = 3, ErrorMessage = "Наименование должно содержать от 3 до 70 символов")]
         public string Name { get; set; }
         [Required(ErrorMessage = "Не указано описание товара")]

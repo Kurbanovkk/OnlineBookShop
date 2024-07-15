@@ -41,12 +41,8 @@ namespace OnlineShop.Db
 
         public void AddProducts(Product product)
         {
-            //var products = _dataBaseContext.Products.FirstOrDefault(name => name.Name.ToLower().Equals(name));
-            if (product == null)
-            {
 				_dataBaseContext.Products.Add(product);
                 _dataBaseContext.SaveChanges();
-            }
         }
 
         public void Del(Guid id)

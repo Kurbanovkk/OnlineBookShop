@@ -1,12 +1,12 @@
 ﻿namespace OnlineBookShop
 {
-    public class Cart
+    public class CartViewModel
     {
         public Guid Id { get; set; }
 
         public string? UserId { get; set; }
 
-        public List<CartItem>? CartItems { get; set; }
+        public List<CartItemViewModel>? CartItems { get; set; }
 
         public decimal Cost 
         { 
