@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using OnlineShop.Db.Models;
+using OnlineBookShop.Helpers;
+using OnlineBookShop.Db.Models;
 
 namespace OnlineBookShop.Controllers
 {
@@ -31,14 +32,15 @@ namespace OnlineBookShop.Controllers
             }
 
             var existingCart = _cartsRepository.TryGetByUserId(Constants.UserId);
+            var existingCartViewModel = Mapping.ToCartViewModel(existingCart);
 
             var order = new Order
             {
                 User = user,
-                Items = existingCart.Carts.Clear
+                Items = existingCartViewModel.CartItems
             };
             _ordersRepository.AddOrder(order);
-            _cartsRepository.Carts.Clear();
+            _cartsRepository.Clear(Constants.UserId);
             return View(order);
         }
 

@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using OnlineShop.Db;
+using OnlineBookShop.Db;
 namespace OnlineBookShop.Controllers
 {
     public class ProductController : Controller

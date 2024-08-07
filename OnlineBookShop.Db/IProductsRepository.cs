@@ -1,6 +1,6 @@
-﻿using OnlineShop.Db.Models;
+﻿using OnlineBookShop.Db.Models;
 
-namespace OnlineShop.Db
+namespace OnlineBookShop.Db
 {
 public interface IProductsRepository
 {

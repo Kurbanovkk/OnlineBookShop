@@ -1,16 +1,19 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace OnlineShop.Db.Models
+namespace OnlineBookShop.Db.Models
 {
     public class Product
     {
-        [Key]
-        public Guid Id { get; }
+        public Guid Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public decimal Cost { get; set; }
         public string Link { get; set; }
+        public List<CartItem> CartItems { get; set; }
 
-        public CartItem CartItem { get; set; }
+        public Product() 
+        {
+            CartItems = new List<CartItem>();
+        }
     }
 }

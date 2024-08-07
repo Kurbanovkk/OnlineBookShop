@@ -1,9 +1,9 @@
 using OnlineBookShop;
 using Serilog;
 using Microsoft.EntityFrameworkCore;
-using OnlineShop.Db;
+using OnlineBookShop.Db;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-using OnlineShop.Db.Models;
+using OnlineBookShop.Db.Models;
 
 
 var builder = WebApplication.CreateBuilder(args);

@@ -1,7 +1,8 @@
 ﻿
-using OnlineShop.Db.Models;
+using OnlineBookShop.Db.Models;
+using OnlineBookShop.Db;
 
-namespace OnlineShop.Db
+namespace OnlineBookShop.Db
 {
     public class ProductsDbRepository : IProductsRepository
     {

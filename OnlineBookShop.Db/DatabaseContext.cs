@@ -1,12 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using OnlineShop.Db.Models;
+using OnlineBookShop.Db.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OnlineShop.Db
+namespace OnlineBookShop.Db
 {
 	public class DatabaseContext : DbContext
 	{
@@ -14,16 +14,6 @@ namespace OnlineShop.Db
 		public DbSet<Product> Products { get; set; }
 		public DbSet<Cart> Carts { get; set; }
 		public DbSet<CartItem> CartItems { get; set; }
-		protected override void OnModelCreating(ModelBuilder modelBuilder)
-		{
-			base.OnModelCreating(modelBuilder);
-
-			// Настройка первичного ключа для сущности Product
-			modelBuilder.Entity<Product>(entity =>
-			{
-				entity.HasKey(e => e.Id);
-			});
-		}
 
 		public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options) 
 		{

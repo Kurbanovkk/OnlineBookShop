@@ -1,4 +1,4 @@
-﻿namespace OnlineShop.Db.Models
+﻿namespace OnlineBookShop.Db.Models
 {
     public interface ICartsRepository
     {

@@ -1,4 +1,4 @@
-﻿namespace OnlineShop.Db.Models
+﻿namespace OnlineBookShop.Db.Models
 {
     public class Cart
     {
@@ -7,5 +7,10 @@
         public string? UserId { get; set; }
 
         public List<CartItem>? CartItems { get; set; }
+
+        public Cart() 
+        {
+            CartItems = new List<CartItem>();
+        }
     }
 }

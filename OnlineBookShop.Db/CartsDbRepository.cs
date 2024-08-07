@@ -1,5 +1,7 @@
 ﻿
-namespace OnlineShop.Db.Models
+using Microsoft.EntityFrameworkCore;
+
+namespace OnlineBookShop.Db.Models
 {
     public class CartsDbRepository : ICartsRepository
     {
@@ -11,8 +13,9 @@ namespace OnlineShop.Db.Models
         }
 		public Cart TryGetByUserId(string userId)
         {
-            return _dataBaseContext.Carts.FirstOrDefault(x => x.UserId == userId);
-        }
+            return _dataBaseContext.Carts.Include(x => x.CartItems).ThenInclude(x => x.Product).FirstOrDefault(x => x.UserId == userId);
+
+		}
 
         public void Add(Product product, string userId)
         {
@@ -22,16 +25,17 @@ namespace OnlineShop.Db.Models
             {
                 var newCart = new Cart
                 {
-                    UserId = userId,
-                    CartItems = new List<CartItem>
+                    UserId = userId
+                };
+                newCart.CartItems = new List<CartItem>
                     {
                         new CartItem
                         {
                             Amount = 1,
-                            Product = product
+                            Product = product,
+                            Cart = newCart
                         }
-                    }
-                };
+                    };
 				_dataBaseContext.Carts.Add(newCart);
             }
             else
@@ -47,7 +51,8 @@ namespace OnlineShop.Db.Models
                     existingCart.CartItems.Add(new CartItem
                     {
                         Amount = 1,
-                        Product = product
+                        Product = product,
+                        Cart = existingCart
                     });
                 }
             }

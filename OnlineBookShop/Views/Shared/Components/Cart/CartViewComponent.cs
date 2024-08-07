@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using OnlineShop.Db.Models;
+using OnlineBookShop.Helpers;
+using OnlineBookShop.Db.Models;
 
 namespace OnlineBookShop.Views.Shared.Components.Cart
 {
@@ -15,8 +16,11 @@ namespace OnlineBookShop.Views.Shared.Components.Cart
         public IViewComponentResult Invoke()
         {
             var cart = _cartRepository.TryGetByUserId(Constants.UserId);
-            var productcounts = cart?.Amount ?? 0;
+            var cartViewModel = Mapping.ToCartViewModel(cart);
+            var productcounts = cartViewModel?.Amount ?? 0;
             return View("Cart", productcounts);
         }
+
+
     }
 }
