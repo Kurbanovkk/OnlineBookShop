@@ -34,7 +34,7 @@ namespace OnlineBookShop.Controllers
 
         public IActionResult Clear()
         {
-            _favouritesRepository.Clear();
+            _favouritesRepository.Clear(Constants.UserId);
             return RedirectToAction("Index");
         }
     }

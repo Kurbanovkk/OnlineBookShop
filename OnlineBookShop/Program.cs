@@ -17,7 +17,7 @@ builder.Services.AddSingleton<IUsersRepository, InMemoryUsersRepository>();
 builder.Services.AddTransient<IProductsRepository, ProductsDbRepository>();
 builder.Services.AddTransient<ICartsRepository, CartsDbRepository>();
 builder.Services.AddSingleton<IOrdersRepository, InMemoryOrdersRepository>();
-builder.Services.AddSingleton<IFavouritesRepository, InMemoryFavouritesRepository>();
+builder.Services.AddSingleton<IFavouritesRepository, FavouritesDbRepository>();
 builder.Services.AddSingleton<IRolesRepository, InMemoryRolesRepository>();
 builder.Services.AddControllersWithViews();
 builder.Host.UseSerilog((context, configuration) => configuration

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OnlineBookShop.Helpers;
-using OnlineBookShop.Db.Models;
+using OnlineBookShop.Db;
 
 namespace OnlineBookShop.Views.Shared.Components.Cart
 {

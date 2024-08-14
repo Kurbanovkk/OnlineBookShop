@@ -1,6 +1,6 @@
 ﻿namespace OnlineBookShop
 {
-    public class FavouritesItem
+    public class FavouritesItemViewModel
     {
         public Guid Id { get; set; }
 

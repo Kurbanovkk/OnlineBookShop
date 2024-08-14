@@ -53,5 +53,33 @@ namespace OnlineBookShop.Helpers
 			}
 			return cartItems;
 		}
+
+		public static CartViewModel ToFavouritesViewModel(Cart cart)
+		{
+			if (cart == null) return null;
+
+			return new CartViewModel
+			{
+				Id = cart.Id,
+				UserId = cart.UserId,
+				CartItems = ToCartItemViewModels(cart.CartItems)
+			};
+		}
+		public static List<CartItemViewModel> ToFavouritesItemViewModels(List<CartItem> cartDbitems)
+		{
+			if (cartDbitems == null) return null;
+			var cartItems = new List<CartItemViewModel>();
+			foreach (var cartDbitem in cartDbitems)
+			{
+				var cartItem = new CartItemViewModel
+				{
+					Id = cartDbitem.Id,
+					Amount = cartDbitem.Amount,
+					Product = ToProductViewModel(cartDbitem.Product)
+				};
+				cartItems.Add(cartItem);
+			}
+			return cartItems;
+		}
 	}
 }

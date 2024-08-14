@@ -1,7 +1,8 @@
 ﻿
 using Microsoft.EntityFrameworkCore;
+using OnlineBookShop.Db.Models;
 
-namespace OnlineBookShop.Db.Models
+namespace OnlineBookShop.Db
 {
     public class CartsDbRepository : ICartsRepository
     {
