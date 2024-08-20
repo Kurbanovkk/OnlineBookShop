@@ -37,6 +37,17 @@ namespace OnlineBookShop.Helpers
 					CartItems = ToCartItemViewModels(cart.CartItems)
 				};
 		}
+		public static FavouritesViewModel ToFavouritesViewModel(Favourites favourites)
+		{
+			if (favourites == null) return null;
+
+			return new FavouritesViewModel
+			{
+				Id = favourites.Id,
+				UserId = favourites.UserId,
+				FavouritesItems = ToFavouritesItemViewModels(favourites.FavouritesItems)
+			};
+		}
 		public static List<CartItemViewModel> ToCartItemViewModels(List<CartItem> cartDbitems)
 		{
 			if (cartDbitems == null) return null;
@@ -54,32 +65,22 @@ namespace OnlineBookShop.Helpers
 			return cartItems;
 		}
 
-		public static CartViewModel ToFavouritesViewModel(Cart cart)
-		{
-			if (cart == null) return null;
 
-			return new CartViewModel
-			{
-				Id = cart.Id,
-				UserId = cart.UserId,
-				CartItems = ToCartItemViewModels(cart.CartItems)
-			};
-		}
-		public static List<CartItemViewModel> ToFavouritesItemViewModels(List<CartItem> cartDbitems)
+		public static List<FavouritesItemViewModel> ToFavouritesItemViewModels(List<FavouritesItem> favouritesDbItems)
 		{
-			if (cartDbitems == null) return null;
-			var cartItems = new List<CartItemViewModel>();
-			foreach (var cartDbitem in cartDbitems)
+			if (favouritesDbItems == null) return null;
+			var favouritesItems = new List<FavouritesItemViewModel>();
+			foreach (var favouritesDbItem in favouritesDbItems)
 			{
-				var cartItem = new CartItemViewModel
+				var favouriteItem = new FavouritesItemViewModel
 				{
-					Id = cartDbitem.Id,
-					Amount = cartDbitem.Amount,
-					Product = ToProductViewModel(cartDbitem.Product)
+					Id = favouritesDbItem.Id,
+					Amount = favouritesDbItem.Amount,
+					Product = ToProductViewModel(favouritesDbItem.Product)
 				};
-				cartItems.Add(cartItem);
+				favouritesItems.Add(favouriteItem);
 			}
-			return cartItems;
+			return favouritesItems;
 		}
 	}
 }

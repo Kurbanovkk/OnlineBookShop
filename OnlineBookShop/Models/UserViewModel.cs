@@ -3,7 +3,7 @@ using System.Data;
 
 namespace OnlineBookShop
 {
-    public class User
+    public class UserViewModel
     {
         public Guid Id { get; set; }
         [Required(ErrorMessage = "Не указан Логин")]
@@ -19,16 +19,16 @@ namespace OnlineBookShop
         [Required(ErrorMessage = "Не указан телефон пользователя")]
         [StringLength(50, MinimumLength = 5, ErrorMessage = "Телефон пользователя должно содержать от 5 до 50 символов")]
         public string PhoneNumber { get; set; }
-        public Roles Role { get; set; }
+        public RolesViewModel Role { get; set; }
 
-        public User(string username, string password, string name, string phone)
+        public UserViewModel(string username, string password, string name, string phone)
         {
             Id = Guid.NewGuid();
             UserName = username;
             Name = name;
             PhoneNumber = phone;
             Password = password;
-            Role = new Roles("User");
+            Role = new RolesViewModel("User");
         }
     }
 }

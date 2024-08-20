@@ -21,7 +21,7 @@ namespace OnlineBookShop.Areas.Administrator.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddRoles(Roles role)
+        public IActionResult AddRoles(RolesViewModel role)
         {
             var roles = _rolesRepository.GetAllRoles();
             if (roles.FirstOrDefault(r => r.Name == role.Name) != null)

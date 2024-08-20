@@ -8,11 +8,11 @@
         Delivered,
         Canceled
     }
-    public class Order
+    public class OrderViewModel
     {
         public Guid Id { get; set;}
 
-        public UserDeliveryInfo User { get; set; }
+        public UserDeliveryInfoViewModel User { get; set; }
         public List<CartItemViewModel> Items { get; set; }
         public string CreateOrder { get; set; }
         public string EditStatusOrder { get; set; }
@@ -24,7 +24,7 @@
                 return Items.Sum(x => x.Cost);
             }
         }
-        public Order() 
+        public OrderViewModel() 
         {
             Id = Guid.NewGuid();
             CreateOrder = DateTime.Now.ToString("dd-MM-yyyy HH:mm");

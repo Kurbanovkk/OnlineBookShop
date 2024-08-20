@@ -45,7 +45,7 @@ namespace OnlineBookShop.Areas.Administrator.Controllers
                 return View(registerUser);
             }    
                 
-            _usersRepository.AddUser(new User(registerUser.UserName, registerUser.Password, registerUser.Name, registerUser.PhoneNumber));
+            _usersRepository.AddUser(new UserViewModel(registerUser.UserName, registerUser.Password, registerUser.Name, registerUser.PhoneNumber));
             return RedirectToAction(nameof(Index));
         }
 

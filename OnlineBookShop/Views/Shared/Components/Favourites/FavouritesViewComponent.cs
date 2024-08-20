@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using OnlineBookShop.Db;
+using OnlineBookShop.Helpers;
 
 namespace OnlineBookShop.Views.Shared.Components.Favourites
 {
@@ -14,7 +16,8 @@ namespace OnlineBookShop.Views.Shared.Components.Favourites
         public IViewComponentResult Invoke()
         {
             var favourites = _favouritesRepository.TryGetByUserId(Constants.UserId);
-            var favouritesCount = favourites?.Amount ?? 0;
+            var cartViewModel = Mapping.ToFavouritesViewModel(favourites);
+            var favouritesCount = cartViewModel?.Amount ?? 0;
             return View("Favourites", favouritesCount);
         }
     }

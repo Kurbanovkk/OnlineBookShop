@@ -2,19 +2,19 @@
 {
     public class InMemoryRolesRepository : IRolesRepository
     {
-        public List<Roles> roles = new List<Roles>() { new Roles("Admin") };
+        public List<RolesViewModel> roles = new List<RolesViewModel>() { new RolesViewModel("Admin") };
 
-        public List<Roles> GetAllRoles()
+        public List<RolesViewModel> GetAllRoles()
         {
             return roles;
         }
 
-        public void Add(Roles role)
+        public void Add(RolesViewModel role)
         {
             roles.Add(role);
         }
 
-        public void Del(Roles role)
+        public void Del(RolesViewModel role)
         {
 
             roles.Remove(role);

@@ -33,4 +33,8 @@
     <ProjectReference Include="..\OnlineBookShop.Db\OnlineBookShop.Db.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Services\Interface\" />
+  </ItemGroup>
+
 </Project>

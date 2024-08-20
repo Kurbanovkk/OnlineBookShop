@@ -2,7 +2,7 @@
 
 namespace OnlineBookShop
 {
-    public class UserDeliveryInfo
+    public class UserDeliveryInfoViewModel
     {
         [Required(ErrorMessage = "Не указана Почта")]
         [StringLength(21, MinimumLength = 2, ErrorMessage = "Почта должна содержать от 2х до21 символов")]

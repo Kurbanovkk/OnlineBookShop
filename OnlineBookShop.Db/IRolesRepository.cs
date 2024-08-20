@@ -1,4 +1,6 @@
 ﻿
+using System.Data;
+
 namespace OnlineBookShop
 {
     public interface IRolesRepository

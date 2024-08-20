@@ -20,7 +20,7 @@ namespace OnlineBookShop.Controllers
         }
 
         [HttpPost]
-        public IActionResult Buy(UserDeliveryInfo user)
+        public IActionResult Buy(UserDeliveryInfoViewModel user)
         {
             if (!user.Name.All(c => char.IsLetter(c) || c == ' '))
             {
@@ -34,7 +34,7 @@ namespace OnlineBookShop.Controllers
             var existingCart = _cartsRepository.TryGetByUserId(Constants.UserId);
             var existingCartViewModel = Mapping.ToCartViewModel(existingCart);
 
-            var order = new Order
+            var order = new OrderViewModel
             {
                 User = user,
                 Items = existingCartViewModel.CartItems

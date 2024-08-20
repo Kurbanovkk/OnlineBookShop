@@ -3,12 +3,12 @@ namespace OnlineBookShop
 {
     public class InMemoryUsersRepository : IUsersRepository
     {
-        private readonly List<User> _users = new List<User>()
+        private readonly List<UserViewModel> _users = new List<UserViewModel>()
         {
-            new User("Magomed@mail.ru", "12345678", "Магомед", "+79285846357")
+            new UserViewModel("Magomed@mail.ru", "12345678", "Магомед", "+79285846357")
         };
 
-        public void AddUser(User user)
+        public void AddUser(UserViewModel user)
         {
             _users.Add(user);
         }
@@ -31,17 +31,17 @@ namespace OnlineBookShop
             _users.Remove(user);
         }
 
-        public List<User> GetUsers()
+        public List<UserViewModel> GetUsers()
         {
             return _users;
         }
 
-        public User TryGetById(Guid id)
+        public UserViewModel TryGetById(Guid id)
         {
             return _users.FirstOrDefault(user => user.Id == id);
         }
 
-        public User TryGetByName(string name)
+        public UserViewModel TryGetByName(string name)
         {
             return _users.FirstOrDefault(x => x.UserName == name);
         }

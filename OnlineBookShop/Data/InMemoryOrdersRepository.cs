@@ -4,14 +4,14 @@ namespace OnlineBookShop
     public class InMemoryOrdersRepository : IOrdersRepository
     {
 
-        private List<Order> _orders = new List<Order>();
+        private List<OrderViewModel> _orders = new List<OrderViewModel>();
 
-        public void AddOrder(Order order)
+        public void AddOrder(OrderViewModel order)
         {
             _orders.Add(order);
         }
 
-        public List<Order> GetOrders()
+        public List<OrderViewModel> GetOrders()
         {
             return _orders;
         }
