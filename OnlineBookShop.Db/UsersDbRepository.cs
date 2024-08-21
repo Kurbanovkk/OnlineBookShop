@@ -1,14 +1,17 @@
-﻿
-namespace OnlineBookShop
+﻿using OnlineBookShop.Db.Models;
+namespace OnlineBookShop.Db
 {
-    public class InMemoryUsersRepository : IUsersRepository
+    public class UsersDbRepository : IUsersRepository
     {
-        private readonly List<UserViewModel> _users = new List<UserViewModel>()
-        {
-            new UserViewModel("Magomed@mail.ru", "12345678", "Магомед", "+79285846357")
-        };
+		private readonly DatabaseContext _dataBaseContext;
 
-        public void AddUser(UserViewModel user)
+		public UsersDbRepository(DatabaseContext dataBaseContext)
+		{
+			_dataBaseContext = dataBaseContext;
+		}
+		private readonly List<User> _users = new List<User>();
+
+        public void AddUser(User user)
         {
             _users.Add(user);
         }
@@ -31,17 +34,17 @@ namespace OnlineBookShop
             _users.Remove(user);
         }
 
-        public List<UserViewModel> GetUsers()
+        public List<User> GetUsers()
         {
             return _users;
         }
 
-        public UserViewModel TryGetById(Guid id)
+        public User TryGetById(Guid id)
         {
             return _users.FirstOrDefault(user => user.Id == id);
         }
 
-        public UserViewModel TryGetByName(string name)
+        public User TryGetByName(string name)
         {
             return _users.FirstOrDefault(x => x.UserName == name);
         }

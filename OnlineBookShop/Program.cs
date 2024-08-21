@@ -13,12 +13,12 @@ var builder = WebApplication.CreateBuilder(args);
 string connection = builder.Configuration.GetConnectionString("online_book_shop");
 // ƒобал€ем контекст MobileContext в качестве сервиса в приложение
 builder.Services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(connection));
-builder.Services.AddSingleton<IUsersRepository, InMemoryUsersRepository>();
+builder.Services.AddSingleton<IUsersRepository, UsersDbRepository>();
 builder.Services.AddTransient<IProductsRepository, ProductsDbRepository>();
 builder.Services.AddTransient<ICartsRepository, CartsDbRepository>();
-builder.Services.AddSingleton<IOrdersRepository, InMemoryOrdersRepository>();
+builder.Services.AddSingleton<IOrdersRepository, OrdersDbRepository>();
 builder.Services.AddSingleton<IFavouritesRepository, FavouritesDbRepository>();
-builder.Services.AddSingleton<IRolesRepository, InMemoryRolesRepository>();
+builder.Services.AddSingleton<IRolesRepository, RolesDbRepository>();
 builder.Services.AddControllersWithViews();
 builder.Host.UseSerilog((context, configuration) => configuration
 .ReadFrom.Configuration(context.Configuration)

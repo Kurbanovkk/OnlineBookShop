@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Win32;
 using OnlineBookShop;
-
+using OnlineBookShop.Db;
 namespace OnlineBookShop.Areas.Administrator.Controllers
 {
     [Area("Administrator")]

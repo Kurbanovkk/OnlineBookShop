@@ -1,4 +1,5 @@
-﻿namespace OnlineBookShop
+﻿using OnlineBookShop.Db.Models;
+namespace OnlineBookShop.Db
 {
     public interface IUsersRepository
     {

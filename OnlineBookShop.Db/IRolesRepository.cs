@@ -1,7 +1,9 @@
 ﻿
 using System.Data;
+using OnlineBookShop.Db.Models;
 
-namespace OnlineBookShop
+
+namespace OnlineBookShop.Db
 {
     public interface IRolesRepository
     {

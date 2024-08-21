@@ -14,6 +14,9 @@ namespace OnlineBookShop.Db
 		public DbSet<Product> Products { get; set; }
 		public DbSet<Cart> Carts { get; set; }
 		public DbSet<Favourites> Favourites { get; set; }
+		public DbSet<User> Users { get; set; }
+		public DbSet<Roles> Roles { get; set; }
+		public DbSet<Order> Order { get; set; }
 
 		public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options) 
 		{
